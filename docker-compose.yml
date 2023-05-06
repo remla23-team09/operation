@@ -1,0 +1,7 @@
+services:
+  model:
+    image: "remla23-team09/model-service"
+  web:
+    image: "remla23-team09/app"
+    ports:
+     - "8080:8080"
