@@ -5,3 +5,5 @@ services:
     image: "remla23-team09/app"
     ports:
      - "8080:8080"
+    environment:
+     - MODEL_HOST=http://model-service:8080
