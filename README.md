@@ -13,14 +13,21 @@
 
 
 # Monitoring
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
+In order to start Prometheus and Grafana run the following commands:
 
-kubectl create namespace monitoring
+- `helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
+- `helm repo update`
+- `kubectl create namespace monitoring`
+- `helm install kube-prometheus prometheus-community/kube-prometheus-stack --namespace monitoring`
+- `kubectl port-forward -n monitoring svc/kube-prometheus-kube-prome-prometheus 9090:9090`
+- `kubectl port-forward -n monitoring svc/kube-prometheus-grafana 80:80`
 
-helm install kube-prometheus prometheus-community/kube-prometheus-stack --namespace monitoring 
-
-kubectl port-forward -n monitoring svc/kube-prometheus-kube-prome-prometheus 9090:9090
-kubectl port-forward -n monitoring svc/kube-prometheus-grafana 80:80
-
+## Grafana
 Grafana credentials: admin; prom-operator
+
+To open the Grafana dashboard, follow these instructions:
+1. Download the JSON file in this repository.
+2. Open Grafana
+3. Click Dashboards in the left-side menu.
+4. Click New and select Import in the dropdown menu.
+4. Upload the dashboard JSON file. 
