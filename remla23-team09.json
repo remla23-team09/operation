@@ -27,12 +27,12 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-blues"
+            "mode": "thresholds"
           },
-          "displayName": "Average Model Prediction Time",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -52,9 +52,75 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 7,
+        "w": 6,
         "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "builder",
+          "expr": "summary_time_sum{step=\"prediction\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Model Prediction Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
         "y": 0
       },
       "id": 5,
@@ -70,7 +136,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": false
       },
-      "pluginVersion": "9.5.1",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
           "datasource": {
@@ -78,13 +144,14 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "avg(gauge_prediction_time{step=\"prediction\"})",
+          "expr": "avg(gauge_time{step=\"prediction\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
       "title": "Average Model Prediction Time",
+      "transparent": true,
       "type": "gauge"
     },
     {
@@ -216,9 +283,74 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-blues"
+            "mode": "thresholds"
           },
-          "displayName": "Average Model Processing Time",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 0,
+        "y": 7
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "builder",
+          "expr": "summary_time_sum{step=\"processing\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Processing Model Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -239,9 +371,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
+        "w": 6,
+        "x": 6,
+        "y": 7
       },
       "id": 4,
       "options": {
@@ -257,7 +389,7 @@
         "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "9.5.1",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
           "datasource": {
@@ -266,7 +398,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "gauge_prediction_time{step=\"processing\"}",
+          "expr": "gauge_time{step=\"processing\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "s",
@@ -288,17 +420,17 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1
-          },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "+inf": {
+                  "index": 0,
+                  "text": "100+"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -313,7 +445,20 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "+Inf"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "100+"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -323,14 +468,21 @@
       },
       "id": 6,
       "options": {
-        "bucketOffset": 0,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        }
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
       },
+      "pluginVersion": "9.5.2",
       "targets": [
         {
           "datasource": {
@@ -338,17 +490,18 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "histogram_size_of_input_count",
+          "expr": "histogram_size_of_input_bucket",
+          "format": "heatmap",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
-      "type": "histogram"
+      "title": "Size of data input (number of characters)",
+      "type": "bargauge"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -363,6 +516,6 @@
   "timezone": "",
   "title": "remla23-team09",
   "uid": "d977c1f0-6332-4fc0-abc9-c5a641d15296",
-  "version": 1,
+  "version": 7,
   "weekStart": ""
 }
