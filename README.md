@@ -1,9 +1,17 @@
 # Operation
 
-## Instructions 
+## Instructions
+### Docker-Compose
 - Make sure to have Docker and Docker compose installed.
 - To run the application locaclly run `docker-compose up`. This starts the `app` and the `model-service` containers. 
-- Open `localhost:8080` to classify restaurant reviews. 
+- Open `localhost:8080` to classify restaurant reviews.
+
+### Installation from helm charts
+- If you desire to deploy applications as helm charts navigate to **app** and **model-service** repositotries where you run the respective commands:
+    - `helm install <app-name> .\app-chart\`
+    - `helm install <model-service-name> .\model-service-chart\`
+
+The helm charts refer to the latest available images from the public repositories.
 
 ## Code Overview
 - The [Model-training](https://github.com/remla23-team09/model-training/tree/main) repository trains the model and preprocesses the data. Check text_preprocessing.py and text_classification.py to see the preprocessing and training of the model. 
