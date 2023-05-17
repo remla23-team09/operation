@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: request-rate-alert
+  namespace: monitoring
+spec:
+  groups:
+    - name: example-group
+      rules:
+        - alert: HighRequestRate
+          expr: counter_happy_predictions == 2
+          for: 10s
+          labels:
+            severity: warning
+          annotations:
+            summary: High request rate detected
+            description: The service has been receiving more than 15 requests per minute for the last 2 minutes.
