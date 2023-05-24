@@ -31,3 +31,20 @@ To open the Grafana dashboard, follow these instructions:
 3. Click Dashboards in the left-side menu.
 4. Click New and select Import in the dropdown menu.
 4. Upload the dashboard JSON file. 
+
+# Istio
+
+- istioctl install
+- kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml
+- kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml
+- kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml
+- helm install app .\app-chart\
+- helm install model-service .\model-service-chart\
+- istioctl analyze (check that everything is OK)
+- kubectl apply -f istio.yml
+- minikube tunnel
+
+Kiali and promotheus:
+- istioctl dashboard kiali
+- istioctl dashboard prometheus
+
