@@ -34,10 +34,13 @@ To open the Grafana dashboard, follow these instructions:
 
 # Istio
 
+- minikube start --memory=3000 --cpus=2 (start with the memory you want, for me this works)
 - istioctl install
-- kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml
-- kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml
-- kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml
+- kubectl label namespace default istio-injection=enabled
+- helm install kube-prometheus prometheus-community/kube-prometheus-stack
+- kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml (inside the folder with your istio installation)
+- kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml (inside the folder with your istio installation)
+- kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml (inside the folder with your istio installation)
 - helm install app .\app-chart\
 - helm install model-service .\model-service-chart\
 - istioctl analyze (check that everything is OK)
