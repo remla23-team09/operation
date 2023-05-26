@@ -47,7 +47,9 @@ kubectl apply -f istio-1.17.2/samples/addons/grafana.yaml (inside the folder wit
 - kubectl apply -f istio.yml
 - minikube tunnel
 
-Kiali, promotheus and grafana:
+Open localhost to reach the app.
+
+To open Kiali, promotheus and grafana:
 - istioctl dashboard kiali
 - istioctl dashboard prometheus
 - istioctl dashboard grafana
