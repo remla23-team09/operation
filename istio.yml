@@ -35,6 +35,7 @@ spec:
         host: app
         subset: v2
       weight: 50
+  
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
