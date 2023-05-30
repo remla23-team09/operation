@@ -33,21 +33,26 @@ To open the Grafana dashboard, follow these instructions:
 4. Upload the dashboard JSON file. 
 
 # Istio
+Install Istio.
 
-- minikube start --memory=3000 --cpus=2 (start with the memory you want, for me this works)
-- istioctl install
-- kubectl label namespace default istio-injection=enabled
-- kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml (inside the folder with your istio installation)
-- kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml (inside the folder with your istio installation)
-- kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml (inside the folder with your istio installation)
-kubectl apply -f istio-1.17.2/samples/addons/grafana.yaml (inside the folder with your istio installation)
-- helm install app .\app-chart\
-- helm install model-service .\model-service-chart\
-- istioctl analyze (check that everything is OK)
-- kubectl apply -f istio.yml
-- minikube tunnel
+Run the following commands:
+1. `minikube start --memory=3000 --cpus=2` (start with the memory you want, for us it is enough with this)
+2. `istioctl install`
+3. `kubectl label namespace default istio-injection=enabled`
 
-Open localhost to reach the app.
+Inside the folder with your istio installation run the following commands:
+4. `kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml`
+5. `kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml`
+6. `kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml` 
+7. `kubectl apply -f istio-1.17.2/samples/addons/grafana.yaml`
+
+8. `helm install app .\app-chart\` (inside the app repo)
+9. `helm install model-service .\model-service-chart\` (inside the model-service repo)
+10. `istioctl analyze` (check that everything is ok)
+11. `kubectl apply -f istio.yml`
+12. `minikube tunnel`
+
+Open localhost/ to reach the app.
 
 To open Kiali, promotheus and grafana:
 - istioctl dashboard kiali
