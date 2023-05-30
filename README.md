@@ -53,7 +53,7 @@ To open Kiali, promotheus and grafana:
 
 ### Kiali
 In Kiali you can observe the Istio service mesh. Here is a screenshot from Kiali, visualizing the mesh traffic:
-![Kiali graph](kiali.JPG)
+![Kiali graph](images/kiali.JPG)
 
 ### Grafana
 
@@ -64,7 +64,7 @@ To open the Grafana dashboard, follow these instructions:
 4. Upload the dashboard JSON file.
 
 You should see the following dashboard:
-![Grafana dashboard](grafana.jpg)
+![Grafana dashboard](images/grafana.jpg)
 
 ### Experiment
 
