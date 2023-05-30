@@ -11,6 +11,13 @@
 - To run the application locaclly run `docker-compose up`. This starts the `app` and the `model-service` containers. 
 - Open `localhost:8080` to classify restaurant reviews. 
 
+### Run with helm charts (A2)
+- If you desire to deploy applications as helm charts navigate to **app** and **model-service** repositories where you run the respective commands:
+    - `helm install <app-name> .\app-chart\`
+    - `helm install <model-service-name> .\model-service-chart\`
+
+The helm charts refer to the latest available images from the public repositories.
+
 ## Monitoring with ServiceMonitor (A2)
 In order to start Prometheus and Grafana run the following commands:
 
