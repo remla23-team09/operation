@@ -76,9 +76,9 @@ You should see the following dashboard:
 
 In our project, we have deployed two different versions of the app service. We have also implemented two different version of the model-service service. The app v1 is connected to model-service v1, and app v2 is connected to model-service v2. 50% of the requests are redirected to app v1 and 50% to app v2. 
 
-The plan is to make two different ML models, and that the two different app services are using different ML models to classify the restaurant reviews. However, for now, they are only different by having different colors on the `Submit` button; blue and green. 
+The plan is to make two different ML models, and that the two different app services are using different ML models to classify the restaurant reviews. However, for now, the two versions are the same. 
 
-The hypothesis is that different colors on the submit button does not affect if users choose to write a review or not, meaning that it should be about equally many restaurant review predictions for each version. This is also what we are visualizing in the Grafana dashboard. 
+The hypothesis is therefore that the metrics should be similar for both of the versions. Some of the metrics we measure are the number of predictions, time taken for prediction, length of input. These metrics can be seen in the screenshot of the Grafana dashboard above. 
 
 When having the two different ML models, we will also add the classification accuracy for the ML models in order to be able to decide which ML model is the best. We will also continue to measure the time taken to make a prediction, in order to see which model is the most resource heavy.
 
