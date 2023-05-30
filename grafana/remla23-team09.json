@@ -289,7 +289,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -344,8 +344,8 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "summary_time_sum{step=\"prediction\"}",
-          "legendFormat": "__auto",
+          "expr": "summary_time_sum{step=\"sentiment\"}",
+          "legendFormat": "{{version}}",
           "range": true,
           "refId": "A"
         }
@@ -356,7 +356,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -408,7 +408,7 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "avg(gauge_time{step=\"prediction\"})",
+          "expr": "avg by(version) (gauge_time{step=\"sentiment\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -511,7 +511,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -566,18 +566,18 @@
           },
           "editorMode": "builder",
           "expr": "summary_time_sum{step=\"processing\"}",
-          "legendFormat": "__auto",
+          "legendFormat": "{{version}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Total Processing Model Time",
+      "title": "Total Model Processing Time",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -634,9 +634,17 @@
           "expr": "gauge_time{step=\"processing\"}",
           "instant": false,
           "interval": "",
-          "legendFormat": "s",
+          "legendFormat": "{{version}}",
           "range": true,
           "refId": "prediction_time"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "hide": false,
+          "refId": "A"
         }
       ],
       "title": "Average Model Processing Time",
@@ -742,13 +750,13 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "remla23-team09",
   "uid": "d977c1f0-6332-4fc0-abc9-c5a641d15296",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
