@@ -40,7 +40,7 @@ Run the following commands:
 2. `istioctl install`
 3. `kubectl label namespace default istio-injection=enabled`
 
-Inside the folder with your istio installation run the following commands:
+Inside the folder with your istio installation run the following commands:  
 4. `kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml`    
 6. `kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml`    
 7. `kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml`   
