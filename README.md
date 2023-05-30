@@ -41,10 +41,10 @@ Run the following commands:
 3. `kubectl label namespace default istio-injection=enabled`
 
 Inside the folder with your istio installation run the following commands:
-4. `kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml`
-5. `kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml`
-6. `kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml` 
-7. `kubectl apply -f istio-1.17.2/samples/addons/grafana.yaml`
+4. `kubectl apply -f istio-1.17.2/samples/addons/prometheus.yaml`    
+6. `kubectl apply -f istio-1.17.2/samples/addons/jaeger.yaml`    
+7. `kubectl apply -f istio-1.17.2/samples/addons/kiali.yaml`   
+8. `kubectl apply -f istio-1.17.2/samples/addons/grafana.yaml`  
 
 8. `helm install app .\app-chart\` (inside the app repo)
 9. `helm install model-service .\model-service-chart\` (inside the model-service repo)
