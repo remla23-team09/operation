@@ -21,7 +21,7 @@ In order to start Prometheus and Grafana run the following commands:
 - `kubectl port-forward -n monitoring svc/kube-prometheus-kube-prome-prometheus 9090:9090`
 - `kubectl port-forward -n monitoring svc/kube-prometheus-grafana 80:80`
 
-## Continuous Experimentation 
+## Continuous Experimentation (A3)
 
 ### Istio
 First, install Istio from https://github.com/istio/istio/releases/tag/1.17.2. 
