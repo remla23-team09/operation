@@ -47,7 +47,7 @@ Inside the folder with your istio installation run the following commands:
 8. `helm install app .\app-chart\` (inside the app repo)
 9. `helm install model-service .\model-service-chart\` (inside the model-service repo)
 10. `istioctl analyze` (check that everything is ok)
-11. `kubectl apply -f istio.yml`
+11. `kubectl apply -f istio.yml` (inside the operations repo)
 12. `minikube tunnel`
 
 Open `localhost:80` to reach the app.
