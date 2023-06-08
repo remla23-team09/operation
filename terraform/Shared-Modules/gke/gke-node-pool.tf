@@ -1,9 +1,9 @@
 resource "google_container_node_pool" "default_node_pool" {
   name       = var.gke_node_pool_config.name
-  location   = var.gke_config.location
+  location   = var.gke_node_pool_config.location
 
   cluster    = google_container_cluster.gke_cluster.name
-  node_locations = [var.gke_config.location]
+  node_locations = [var.gke_node_pool_config.location]
   
   autoscaling {
     min_node_count = 1

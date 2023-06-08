@@ -15,14 +15,14 @@ variable "location" {
 
 variable "gke_config" {
   default = {
-    location = "europe-west4-a"
+    # location = "europe-west4-a"
   }
 }
 
 variable "gke_node_pool_config" {
   default = {
     name     = "default"
-    
+    location = "europe-west4-a"
   }
 }
 
