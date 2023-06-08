@@ -1,0 +1,10 @@
+
+terraform/kubernetes/.terraform.lock.hcl
+
+terraform/kubernetes/config
+
+terraform/kubernetes/.terraform/
+
+terraform/.terraform/
+
+terraform/.terraform.lock.hcl

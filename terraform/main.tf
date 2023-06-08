@@ -1,24 +1,29 @@
 # module "services" {
-#   source = "./modules/services"
+#   source = "./Shared-Modules/services"
 # }
 
 # module "network" {
-#   source = "./modules/network"
+#   source = "./Shared-Modules/network"
 #   name = "remla23-team09"
 #   vnet_config = var.vnet_config
 # }
 
 module "terraform_state" {
-  source = "./modules/terraform_state"
-  name = "remla23-team09"
+  source = "./Shared-Modules/terraform-state"
+
+  project = var.project
+  team    = var.team
+
   location = var.location
 }
 
 module "gke" {
-    source = "./modules/gke"
-    name = "remla23-team09"
-    location = var.location
+  source = "./Shared-Modules/gke"
 
-    gke_config = var.gke_config
+  project = var.project
+  team    = var.team
+
+  location = var.location
+
+  gke_config = var.gke_config
 }
-

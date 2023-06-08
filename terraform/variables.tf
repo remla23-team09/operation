@@ -1,3 +1,13 @@
+variable "project" {
+  type        = string
+  default = "remla23"
+}
+
+variable "team" {
+  type        = string
+  default = "team09"
+}
+
 variable "location" {
   type        = string
   default = "europe-west4"
