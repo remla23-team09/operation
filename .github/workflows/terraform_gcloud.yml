@@ -1,5 +1,5 @@
 name: Plan & Apply Terraform Google Cloud Codebase
-run-name: "TF-GCP:" ${{ github.event.commits[0].message }}
+run-name: "TF-GCP: ${{ github.event.commits[0].message }}"
 on:
   workflow_dispatch:
 jobs:
