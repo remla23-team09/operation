@@ -1,5 +1,5 @@
-name: Plan & Apply Terraform Google Cloud Codebase
-run-name: Plan & Apply Terraform Google Cloud Codebase
+name: Plan & Apply Terraform Kubernetes Codebase
+run-name: Plan & Apply Terraform Kubernetes Codebase
 on:
   workflow_dispatch:
 jobs:
@@ -12,12 +12,12 @@ jobs:
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
+        working-directory: ./terraform/kubernetes
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Plan
         run: terraform plan --no-color
-        working-directory: ./terraform
+        working-directory: ./terraform/kubernetes
   apply:
     name: Terraform Plan
     runs-on: ubuntu-22.04
@@ -28,9 +28,9 @@ jobs:
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
+        working-directory: ./terraform/kubernetes
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Apply
         run: terraform apply --auto-approve --no-color
-        working-directory: ./terraform
+        working-directory: ./terraform/kubernetes
