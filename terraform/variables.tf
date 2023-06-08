@@ -22,7 +22,7 @@ variable "gke_config" {
 variable "gke_node_pool_config" {
   default = {
     name     = "default"
-    location = "europe-west4-a"
+    node_locations = ["europe-west4-a"]
   }
 }
 
