@@ -6,6 +6,8 @@ jobs:
   plan:
     name: Terraform Plan
     runs-on: ubuntu-22.04
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Terraform
@@ -13,8 +15,6 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Plan
         run: terraform plan -no-color
         working-directory: ./terraform
@@ -22,6 +22,8 @@ jobs:
     name: Terraform Plan
     runs-on: ubuntu-22.04
     environment: terraform-apply
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Terraform
@@ -29,8 +31,6 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Apply
         run: terraform apply --auto-approve -no-color
         working-directory: ./terraform
