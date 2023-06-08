@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   plan:
-    name: Terraform Plan
+    name: 1 - Terraform Plan
     runs-on: ubuntu-22.04
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
@@ -19,7 +19,7 @@ jobs:
         run: terraform plan -no-color
         working-directory: ./terraform
   apply:
-    name: Terraform Plan
+    name: 2 - Terraform Apply
     runs-on: ubuntu-22.04
     environment: terraform-apply
     env:
