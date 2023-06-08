@@ -25,6 +25,7 @@ jobs:
         working-directory: ./terraform/kubernetes
   apply:
     name: 2 - Terraform Apply
+    needs: plan
     runs-on: ubuntu-22.04
     environment: terraform-apply
     env:
