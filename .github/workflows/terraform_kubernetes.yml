@@ -1,5 +1,5 @@
 name: Plan & Apply Terraform Kubernetes Codebase
-run-name: ${{ github.event.head_commit.message }}
+run-name: (TF-K8S) ${{ github.run_number }}
 on:
   workflow_dispatch:
 jobs:
