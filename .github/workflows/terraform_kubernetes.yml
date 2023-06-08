@@ -16,7 +16,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Plan
-        run: terraform plan --no-color
+        run: terraform plan -no-color
         working-directory: ./terraform/kubernetes
   apply:
     name: Terraform Plan
@@ -32,5 +32,5 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Apply
-        run: terraform apply --auto-approve --no-color
+        run: terraform apply --auto-approve -no-color
         working-directory: ./terraform/kubernetes
