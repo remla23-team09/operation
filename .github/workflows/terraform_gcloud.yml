@@ -10,6 +10,11 @@ jobs:
       GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
     steps:
       - uses: actions/checkout@v3
+      - id: 'auth'
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init
@@ -21,7 +26,7 @@ jobs:
   apply:
     name: 2 - Terraform Apply
     runs-on: ubuntu-22.04
-    environment: terraform-apply
+    environment: terraform-apply  
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
     steps:
