@@ -15,7 +15,14 @@ variable "location" {
 
 variable "gke_config" {
   default = {
-    # default_max_pods_per_node = 80
+    location = "europe-west4-a"
+  }
+}
+
+variable "gke_node_pool_config" {
+  default = {
+    name     = "default"
+    
   }
 }
 

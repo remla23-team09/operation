@@ -25,5 +25,6 @@ module "gke" {
 
   location = var.location
 
-  gke_config = var.gke_config
+  gke_config          = var.gke_config
+  gke_node_pool_config = var.gke_node_pool_config
 }

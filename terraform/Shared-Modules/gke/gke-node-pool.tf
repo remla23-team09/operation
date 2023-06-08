@@ -1,8 +1,14 @@
 resource "google_container_node_pool" "default_node_pool" {
-  name       = "default"
-  location   = var.location
+  name       = var.gke_node_pool_config.name
+  location   = var.gke_config.location
+
   cluster    = google_container_cluster.gke_cluster.name
-  node_count = 1
+  node_locations = [var.gke_config.location]
+  
+  autoscaling {
+    min_node_count = 1
+    max_node_count = 3
+  }
 
   node_config {
     preemptible  = true
