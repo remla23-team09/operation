@@ -17,6 +17,11 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_SA }}
+      - id: gke
+        name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v1.0.2
+        with:
+          cluster_name: remla23-team09-gke
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform/kubernetes
