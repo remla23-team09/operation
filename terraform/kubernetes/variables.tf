@@ -8,6 +8,11 @@ variable "team" {
   default = "team09"
 }
 
+variable "kubeconfig" {
+  type    = string
+  default = "./config"
+}
+
 
 variable "namespaces" {
   description = "A map of namespaces to create"

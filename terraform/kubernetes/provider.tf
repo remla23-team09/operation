@@ -12,10 +12,6 @@ terraform {
       source  = "hashicorp/helm"
       version = "2.10.1"
     }
-    grafana = {
-      source  = "grafana/grafana"
-      version = "1.40.1"
-    }
   }
   backend "gcs" {
     bucket = "remla23-team09-terraform-state-bucket"
@@ -28,9 +24,13 @@ provider "google" {
   region  = "europe-west4"
 }
 
-provider "kubernetes" {}
+provider "kubernetes" {
+  config_path = var.kubeconfig
+}
 
 provider "helm" {
-  kubernetes {}
+  kubernetes {
+    config_path = var.kubeconfig
+  }
 }
 
