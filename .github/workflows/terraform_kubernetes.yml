@@ -29,7 +29,7 @@ jobs:
         run: terraform init
         working-directory: ./terraform/kubernetes
       - name: Terraform Plan
-        run: terraform plan -no-color -var 'kubeconfig={{ steps.gke.outputs.kubeconfig_path }}'
+        run: terraform plan -no-color -var 'kubeconfig=${{ steps.gke.outputs.kubeconfig_path }}'
         working-directory: ./terraform/kubernetes
   apply:
     name: 2 - Terraform Apply
