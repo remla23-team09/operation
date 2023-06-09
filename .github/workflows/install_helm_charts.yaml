@@ -42,6 +42,6 @@ jobs:
       - name: Install Frontend App
         run: helm install app oci://ghcr.io/remla23-team09/helm-charts/app-chart --version ${{ github.event.inputs.app_chart_version }}
       - name: Install Model Service
-        run: helm install app oci://ghcr.io/remla23-team09/helm-charts/model-service-chart --version ${{ github.event.inputs.mdoel_service_chart_version }}
+        run: helm install model-service oci://ghcr.io/remla23-team09/helm-charts/model-service-chart --version ${{ github.event.inputs.mdoel_service_chart_version }}
       - name: Install Model Training
-        run: helm install app oci://ghcr.io/remla23-team09/helm-charts/model-training-chart --version ${{ github.event.inputs.model_training_chart_version }}
+        run: helm install model-training oci://ghcr.io/remla23-team09/helm-charts/model-training-chart --version ${{ github.event.inputs.model_training_chart_version }}
