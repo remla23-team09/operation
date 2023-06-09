@@ -10,8 +10,6 @@ jobs:
       GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2.0.3
       - id: 'auth'
         name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
@@ -23,8 +21,8 @@ jobs:
         with:
           cluster_name: remla23-team09-gke
           location: europe-west4
-      - name: set KUBE_CONFIG_PATH environment variable 
-        run: echo "KUBE_CONFIG_PATH=${{ secrets.KUBECONFIG }}" >> $GITHUB_ENV
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform/kubernetes
@@ -40,6 +38,17 @@ jobs:
       GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
     steps:
       - uses: actions/checkout@v3
+      - id: 'auth'
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA }}
+      - id: gke
+        name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v1.0.2
+        with:
+          cluster_name: remla23-team09-gke
+          location: europe-west4
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init
@@ -48,5 +57,5 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA }}
       - name: Terraform Apply
-        run: terraform apply --auto-approve -no-color
+        run: terraform apply --auto-approve -no-color -var 'kubeconfig=${{ steps.gke.outputs.kubeconfig_path }}'
         working-directory: ./terraform/kubernetes
