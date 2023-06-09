@@ -13,7 +13,7 @@ terraform {
       version = "2.10.1"
     }
     grafana = {
-      source = "grafana/grafana"
+      source  = "grafana/grafana"
       version = "1.40.1"
     }
   }
@@ -28,13 +28,9 @@ provider "google" {
   region  = "europe-west4"
 }
 
-provider "kubernetes" {
-  config_path = "./config"
-}
+provider "kubernetes" {}
 
 provider "helm" {
-  kubernetes {
-    config_path = "./config"
-  }
+  kubernetes {}
 }
 

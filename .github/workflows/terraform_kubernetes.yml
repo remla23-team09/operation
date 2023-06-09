@@ -23,6 +23,8 @@ jobs:
         with:
           cluster_name: remla23-team09-gke
           location: europe-west4
+      - name: set KUBE_CONFIG_PATH environment variable 
+        run: echo "KUBE_CONFIG_PATH=${{ secrets.KUBECONFIG }}" >> $GITHUB_ENV
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform/kubernetes
