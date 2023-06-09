@@ -22,6 +22,7 @@ jobs:
         uses: google-github-actions/get-gke-credentials@v1.0.2
         with:
           cluster_name: remla23-team09-gke
+          location: europe-west4
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform/kubernetes
