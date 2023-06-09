@@ -1,0 +1,47 @@
+name: Deploy Helm Charts
+run-name: Package & Push Helm Chart
+on:
+  workflow_dispatch:
+    inputs:
+      app_chart_version:
+        description: 'app chart version'
+        required: true
+        default: '0.0.1'
+      mdoel_service_chart_version:
+        description: 'model-service chart version'
+        required: true
+        default: '0.0.1'
+      model_training_chart_version:
+        description: 'model-training chart version'
+        required: true
+        default: '0.0.1'
+
+jobs:
+  install:
+    name: Install Helm Charts
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - id: 'auth'
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA }}
+      - id: gke
+        name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v1.0.2
+        with:
+          cluster_name: remla23-team09-gke
+          location: europe-west4
+      - name: Registry Login (ghcr.io)
+        run: echo "${{ secrets.GH_TOKEN }}" | docker login ghcr.io -u $.lowercase --password-stdin
+      - id: string
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ${{ github.repository }}
+      - name: Install Frontend App
+        run: helm install app oci://ghcr.io/remla23-team09/helm-charts/app-chart --version ${{ github.event.inputs.app_chart_version }}
+      - name: Install Model Service
+        run: helm install app oci://ghcr.io/remla23-team09/helm-charts/model-service-chart --version ${{ github.event.inputs.mdoel_service_chart_version }}
+      - name: Install Model Training
+        run: helm install app oci://ghcr.io/remla23-team09/helm-charts/model-training-chart --version ${{ github.event.inputs.model_training_chart_version }}
