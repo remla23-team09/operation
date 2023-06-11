@@ -88,7 +88,7 @@ variable "chart_config_grafana_operator" {
     values = [
       "sidecar.dashboards.enabled: true",
       "sidecar.dashboards.searchNamespace: ALL",
-      "service.type: LoadBalancer"
+      "service.loadBalancerIP: 34.141.178.188"
     ]
 
     set_maps = {
@@ -109,5 +109,17 @@ variable "grafana_dashboards" {
         grafana_dashboard = "1"
       }
     }
+  }
+}
+
+variable "kiali_server" {
+  description = "A configmap for grafaba dashboards"
+  default = {
+    version   = "1.69.0"
+    namespace = "istio-system"
+
+    values = []
+
+    set_maps = {}
   }
 }

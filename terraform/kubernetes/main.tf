@@ -101,3 +101,19 @@ module "grafana_operator" {
   set_maps = var.chart_config_grafana_operator.set_maps
 }
 
+module "kiali_server" {
+  depends_on = [module.grafana_operator]
+
+  source        = "../Shared-Modules/helm-chart"
+  name          = "kiali-server"
+  repository    = "https://kiali.org/helm-charts"
+  chart         = "kiali-server"
+  chart_version = var.chart_config_kiali_server.version
+
+  namespace = var.chart_config_kiali_server.namespace
+
+  values = concat(var.chart_config_kiali_server.values)
+
+  set_maps = var.chart_config_kiali_server.set_maps
+}
+
