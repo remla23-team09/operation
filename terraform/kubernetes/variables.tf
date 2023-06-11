@@ -112,7 +112,7 @@ variable "grafana_dashboards" {
   }
 }
 
-variable "kiali_server" {
+variable "chart_config_kiali_server" {
   description = "A configmap for grafaba dashboards"
   default = {
     version   = "1.69.0"
