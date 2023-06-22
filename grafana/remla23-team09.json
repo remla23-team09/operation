@@ -49,7 +49,35 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -66,30 +94,51 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Accuracy_twt_roberta"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Twt Roberta model"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Accuracy_gaussianNB"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Gaussian NB model"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 6,
-        "w": 10,
-        "x": 1,
+        "h": 8,
+        "w": 12,
+        "x": 0,
         "y": 1
       },
-      "id": 12,
+      "id": 15,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
         },
-        "textMode": "auto"
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "pluginVersion": "9.0.1",
       "targets": [
         {
           "datasource": {
@@ -97,12 +146,11 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "exemplar": false,
-          "expr": "counter_happy_predictions_total{version=\"v1\"}",
+          "expr": "wrong_predictions_total{version=\"v1\"}",
           "hide": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "happy_v1"
+          "refId": "Wrong_v1"
         },
         {
           "datasource": {
@@ -110,12 +158,35 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "exemplar": false,
-          "expr": "counter_sad_predictions_total{version=\"v1\"}",
+          "expr": "wrong_predictions_total{version=\"v2\"}",
           "hide": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "sad_v1"
+          "refId": "Wrong_v2"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "correct_predictions_total{version=\"v1\"}",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Correct_v1"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "correct_predictions_total{version=\"v2\"}",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Correct_v2"
         },
         {
           "datasource": {
@@ -123,49 +194,25 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$happy_v1 + $sad_v1\n",
+          "expression": "$Correct_v1 / ($Correct_v1 + $Wrong_v1)",
           "hide": false,
-          "refId": "Current version",
+          "refId": "Accuracy_twt_roberta",
           "type": "math"
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "counter_sad_predictions_total{version=\"v2\"}",
-          "hide": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "sad_v2"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "counter_happy_predictions_total{version=\"v2\"}",
-          "hide": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "happy_v2"
-        },
-        {
-          "datasource": {
             "name": "Expression",
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$happy_v2 + $sad_v2\n",
+          "expression": "$Correct_v2 / ($Correct_v2 + $Wrong_v2)",
           "hide": false,
-          "refId": "New version",
+          "refId": "Accuracy_gaussianNB",
           "type": "math"
         }
       ],
-      "title": "Comparison application versions, number of predictions",
-      "type": "stat"
+      "title": "Classification accuracy - Comparison",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -291,7 +338,6 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -310,18 +356,17 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "s"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 6,
+        "h": 5,
+        "w": 12,
         "x": 0,
-        "y": 7
+        "y": 9
       },
-      "id": 7,
+      "id": 12,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -341,82 +386,78 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "summary_time_sum{step=\"sentiment\"}",
-          "legendFormat": "{{version}}",
+          "exemplar": false,
+          "expr": "counter_happy_predictions_total{version=\"v1\"}",
+          "hide": true,
+          "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Total Model Prediction Time",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-BlYlRd"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
+          "refId": "happy_v1"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 6,
-        "x": 6,
-        "y": 7
-      },
-      "id": 5,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false
-      },
-      "pluginVersion": "9.0.1",
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "avg by(version) (gauge_time{step=\"sentiment\"})",
+          "exemplar": false,
+          "expr": "counter_sad_predictions_total{version=\"v1\"}",
+          "hide": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "sad_v1"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$happy_v1 + $sad_v1\n",
+          "hide": false,
+          "refId": "Twt Roberta",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "counter_sad_predictions_total{version=\"v2\"}",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "sad_v2"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "counter_happy_predictions_total{version=\"v2\"}",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "happy_v2"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$happy_v2 + $sad_v2\n",
+          "hide": false,
+          "refId": "Guassian NB",
+          "type": "math"
         }
       ],
-      "title": "Average Model Prediction Time",
-      "transparent": true,
-      "type": "gauge"
+      "title": "Number of predictions - Comparison",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -505,74 +546,8 @@
           "refId": "A"
         }
       ],
-      "title": "Size of data input (number of characters) current version",
+      "title": "Size of data input (number of characters) - Twt Roberta",
       "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 0,
-        "y": 14
-      },
-      "id": 8,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "builder",
-          "expr": "summary_time_sum{step=\"processing\"}",
-          "legendFormat": "{{version}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Total Model Processing Time",
-      "type": "stat"
     },
     {
       "datasource": {
@@ -603,12 +578,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
+        "h": 9,
+        "w": 12,
+        "x": 0,
         "y": 14
       },
-      "id": 4,
+      "id": 5,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -619,8 +594,7 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false,
-        "text": {}
+        "showThresholdMarkers": false
       },
       "pluginVersion": "9.0.1",
       "targets": [
@@ -629,25 +603,26 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "gauge_time{step=\"processing\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "{{version}}",
+          "editorMode": "builder",
+          "expr": "avg by(version) (gauge_time{step=\"sentiment\", version=\"v1\"})",
+          "legendFormat": "Twt Roberta",
           "range": true,
-          "refId": "prediction_time"
+          "refId": "Twt Roberta"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
+          "editorMode": "builder",
+          "expr": "avg by(version) (gauge_time{step=\"sentiment\", version=\"v2\"})",
           "hide": false,
-          "refId": "A"
+          "legendFormat": "Gaussian NB",
+          "range": true,
+          "refId": "Guassian NB"
         }
       ],
-      "title": "Average Model Processing Time",
+      "title": "Average Model Prediction Time",
       "transparent": true,
       "type": "gauge"
     },
@@ -738,11 +713,11 @@
           "refId": "A"
         }
       ],
-      "title": "Size of data input (number of characters) new version",
+      "title": "Size of data input (number of characters) - Guassian NB",
       "type": "bargauge"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 36,
   "style": "dark",
   "tags": [],
@@ -750,8 +725,8 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-06-22T22:06:44.894Z",
+    "to": "2023-06-22T22:16:44.894Z"
   },
   "timepicker": {},
   "timezone": "",
