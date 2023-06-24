@@ -42,7 +42,7 @@ module "istio_ingressgateway" {
   source     = "../Shared-Modules/helm-chart"
   name       = "istio-ingressgateway"
   repository = "https://istio-release.storage.googleapis.com/charts"
-  chart      = "gateway "
+  chart      = "gateway"
 
   chart_version = var.chart_config_istio_ingressgateway.version
   namespace     = var.chart_config_istio_ingressgateway.namespace
@@ -74,7 +74,7 @@ module "grafana_public_ip" {
 module "grafana_daashboards" {
   depends_on = [module.kube_prometheus_stack]
 
-  source = "../Shared-Modules/kuberentes-configmap"
+  source = "../Shared-Modules/grafana-dashboard"
 
   for_each = var.grafana_dashboards
 

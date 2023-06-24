@@ -91,11 +91,7 @@ variable "chart_config_grafana_operator" {
       "service.loadBalancerIP: 34.141.178.188"
     ]
 
-    set_maps = {
-      "grafana.ini.paths.provisioning"            = "/etc/grafana/provisioning"
-      "grafana.ini.dashboard.labels.provider"     = "enabled"
-      "grafana.ini.dashboard.labels.sc_dashboard" = "1"
-    }
+    set_maps = {}
   }
 }
 
