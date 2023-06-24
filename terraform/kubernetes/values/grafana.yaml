@@ -8,7 +8,6 @@ dashboardsProvider:
   enabled: true
   dashboardsConfigMaps:
     - configMapName: remla23-team09
-      folderName: remla23-team09
       fileName: remla23-team09.json
 
 
