@@ -1,7 +1,7 @@
 service:
   type: LoadBalancer
   loadBalancerIP: "34.32.188.221"
-  nodePorts:
+  ports:
     grafana: 80
 
 dashboardsProvider:
