@@ -102,7 +102,7 @@ module "grafana" {
 }
 
 module "kiali_server" {
-  depends_on = [module.grafana_operator]
+  depends_on = [module.grafana]
 
   source        = "../Shared-Modules/helm-chart"
   name          = "kiali-server"

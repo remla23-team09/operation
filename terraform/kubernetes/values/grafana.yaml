@@ -1,9 +1,7 @@
-sidecar:
-  dashboards:
-    enabled: true
-    searchNamespace: ALL
+service:
+  loadBalancerIP: "34.32.188.221"
 
-dashboardProviders:
+dashboardsProvider:
   enabled: true
   dashboardproviders.yaml:
     apiVersion: 1
