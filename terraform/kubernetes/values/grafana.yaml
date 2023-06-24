@@ -1,4 +1,8 @@
-hostAliases: [34.141.178.188]
+hostAliases: [
+  - ip: 34.141.178.188
+    hostnames:
+      - "grafana.remla23-team09.com"
+    ]
 
 sidecar:
   dashboards:
