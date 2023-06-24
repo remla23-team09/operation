@@ -1,0 +1,2 @@
+variable "metadata" {}
+variable "data" {}
