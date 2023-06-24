@@ -96,6 +96,38 @@ module "grafana_dashboards" {
   labels    = each.value.labels
 }
 
+module "grafana_persistent_volume" {
+  depends_on = [module.grafana_dashboards]
+
+  source = "../Shared-Modules/kubernetes-persistent-volume"
+
+  metadata = {
+    name = "grafana-persistent-volume"
+  }
+
+  spec = {
+    storage = "10Gi"
+    access_modes = "ReadWriteMany"
+    vsphere_volume_path = "/data/grafana"
+  }
+}
+
+module "grafana_persistent_volume_claim" {
+  depends_on = [module.grafana_persistent_volume]
+
+  source = "../Shared-Modules/kubernetes-persistent-volume-claim"
+
+  metadata = {
+    name = "grafana-persistent-volume-claim"
+  }
+
+  spec = {
+    storage = "10Gi"
+    access_modes = "ReadWriteMany"
+    volume_name = module.grafana_persistent_volume.pv_name
+  }
+}
+
 module "grafana" {
   depends_on = [module.grafana_dashboards]
 
