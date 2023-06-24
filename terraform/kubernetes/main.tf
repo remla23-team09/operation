@@ -86,7 +86,7 @@ module "grafana_dashboards" {
 }
 
 module "grafana_operator" {
-  depends_on = [module.grafana_daashboards]
+  depends_on = [module.grafana_dashboards]
 
   source        = "../Shared-Modules/helm-chart"
   name          = "grafana-operator"
