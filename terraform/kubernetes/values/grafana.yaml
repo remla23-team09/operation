@@ -1,10 +1,12 @@
 service:
   type: LoadBalancer
   loadBalancerIP: "34.32.188.221"
+  nodePorts:
+    grafana: 80
 
 ingress:
   enabled: true
-  hostname: "grafa.remla23-team09.com"
+  hostname: "grafana.remla23-team09.com"
 
 dashboardsProvider:
   enabled: true
