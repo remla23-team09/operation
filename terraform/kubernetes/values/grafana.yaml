@@ -1,20 +1,14 @@
 service:
+  type: LoadBalancer
   loadBalancerIP: "34.32.188.221"
+
+ingress:
+  enabled: true
+  hostname: "grafa.remla23-team09.com"
 
 dashboardsProvider:
   enabled: true
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-    - name: 'default'
-      orgId: 1
-      folder: ''
-      type: file
-      disableDeletion: false
-      editable: true
-      options:
-        path: /var/lib/grafana/dashboards/default
 
-  dashboardsConfigMaps[0]:
-    configMapName: "remla23-team09"
-    fileName: "remla23-team09.json"
+dashboardsConfigMaps[0]:
+  configMapName: "remla23-team09"
+  fileName: "remla23-team09.json"
