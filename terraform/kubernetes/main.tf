@@ -107,7 +107,7 @@ module "grafana_persistent_volume" {
 
   spec = {
     storage = "10Gi"
-    access_modes = "ReadWriteMany"
+    access_modes = ["ReadWriteMany"]
     vsphere_volume_path = "/data/grafana"
   }
 }
@@ -123,7 +123,7 @@ module "grafana_persistent_volume_claim" {
 
   spec = {
     storage = "10Gi"
-    access_modes = "ReadWriteMany"
+    access_modes = ["ReadWriteMany"]
     volume_name = module.grafana_persistent_volume.pv_name
   }
 }
