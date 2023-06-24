@@ -1,9 +1,3 @@
-grafana-operator:
-  grafana:
-    config:
-      server:
-        root_url: "https://grafana.remla23-team09.com"
-
 sidecar:
   dashboards:
     enabled: true
