@@ -1,24 +1,23 @@
+service:
+  hostAliases: [34.141.178.188]
+
 sidecar:
   dashboards:
     enabled: true
     searchNamespace: ALL
 
-service:
-  loadBalancerIP: 34.141.178.188
-
-grafana:
-  dashboardProviders:
-   dashboardproviders.yaml:
-     apiVersion: 1
-     providers:
-     - name: 'default'
-       orgId: 1
-       folder: ''
-       type: file
-       disableDeletion: false
-       editable: true
-       options:
-         path: /var/lib/grafana/dashboards/default
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
 
   dashboardsConfigMaps:
     default: "remla23-team09"
