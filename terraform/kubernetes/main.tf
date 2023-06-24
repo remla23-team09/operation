@@ -139,7 +139,9 @@ module "grafana" {
 
   namespace = var.chart_config_grafana.namespace
 
-  values = ["${file("./values/grafana.yaml")}"]
+  values = ["${file("./values/grafana.yaml")}",
+            "persistance.existingClaim=${module.grafana_persistent_volume_claim.pvc_name}"
+          ]
 
   set_maps = var.chart_config_grafana.set_maps
 }

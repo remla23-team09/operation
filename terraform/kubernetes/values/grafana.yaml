@@ -13,9 +13,6 @@ dashboardsProvider:
   enabled: true
   configMapName: ""
 
-persistance:
-  existingClaim: pvc-5f81b7d5-d876-4c51-8606-a9c8ae9c3f35
-
 datasources:
   secretDefinition:
     apiVersion: 1

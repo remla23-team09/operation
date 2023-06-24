@@ -1,5 +1,7 @@
 resource "kubernetes_persistent_volume" "persistent_volume" {
-  metadata = var.metadata
+  metadata = {
+    name = var.metadata.name
+  }
   
   spec {
     capacity = {  
