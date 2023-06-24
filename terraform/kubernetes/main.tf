@@ -71,7 +71,7 @@ module "grafana_public_ip" {
   name = "${var.project}-${var.team}-grafana-public-ip"
 }
 
-module "grafana_daashboards" {
+module "grafana_dashboards" {
   depends_on = [module.kube_prometheus_stack]
 
   source = "../Shared-Modules/grafana-dashboard"

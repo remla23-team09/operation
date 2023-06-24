@@ -86,12 +86,14 @@ variable "chart_config_grafana_operator" {
     namespace = "monitoring"
 
     values = [
-      "sidecar.dashboards.enabled: true",
-      "sidecar.dashboards.searchNamespace: ALL",
-      "service.loadBalancerIP: 34.141.178.188"
+      "${file("./values/grafana.yaml")}}"
     ]
 
-    set_maps = {}
+    set_maps = {
+      "grafana.ini.paths.provisioning"            = "/etc/grafana/provisioning"
+      "grafana.ini.dashboard.labels.provider"     = "enabled"
+      "grafana.ini.dashboard.labels.sc_dashboard" = "1"
+    }
   }
 }
 
