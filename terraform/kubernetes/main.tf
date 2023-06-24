@@ -85,20 +85,20 @@ module "grafana_dashboards" {
   labels    = each.value.labels
 }
 
-module "grafana_operator" {
+module "grafana" {
   depends_on = [module.grafana_dashboards]
 
   source        = "../Shared-Modules/helm-chart"
-  name          = "grafana-operator"
+  name          = "grafana"
   repository    = "https://charts.bitnami.com/bitnami"
-  chart         = "grafana-operator"
-  chart_version = var.chart_config_grafana_operator.version
+  chart         = "grafana"
+  chart_version = var.chart_config_grafana.version
 
-  namespace = var.chart_config_grafana_operator.namespace
+  namespace = var.chart_config_grafana.namespace
 
   values = ["${file("./values/grafana.yaml")}"]
 
-  set_maps = var.chart_config_grafana_operator.set_maps
+  set_maps = var.chart_config_grafana.set_maps
 }
 
 module "kiali_server" {

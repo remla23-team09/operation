@@ -79,10 +79,10 @@ variable "chart_config_kube_prometheus_stack" {
   }
 }
 
-variable "chart_config_grafana_operator" {
+variable "chart_config_grafana" {
   description = "A configmap for kube prometheus stack"
   default = {
-    version   = "2.9.3"
+    version   = "8.4.6"
     namespace = "monitoring"
 
     values = []
