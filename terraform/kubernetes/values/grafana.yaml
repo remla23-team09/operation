@@ -1,3 +1,8 @@
+admin:
+  existingSecret: "grafana-admin-credentials"
+  userKey: "username"
+  passwordKey: "password"
+
 service:
   type: LoadBalancer
   loadBalancerIP: "34.32.188.221"

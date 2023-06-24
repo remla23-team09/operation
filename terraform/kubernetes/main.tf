@@ -67,12 +67,23 @@ module "kube_prometheus_stack" {
 }
 
 module "grafana_public_ip" {
+  depends_on = [module.kube_prometheus_stack]
+
   source = "../Shared-Modules/ip-address"
   name = "${var.project}-${var.team}-grafana-public-ip"
 }
 
+module "grafana_admin_credentials" {
+  depends_on = [module.grafana_public_ip]
+
+  source = "../Shared-Modules/kubernetes-credentials"
+  name = "grafana-admin-credentials"
+  namespace = var.chart_config_grafana.namespace
+  username = "team09-admin"
+}
+
 module "grafana_dashboards" {
-  depends_on = [module.kube_prometheus_stack]
+  depends_on = [module.grafana_admin_credentials]
 
   source = "../Shared-Modules/grafana-dashboard"
 
