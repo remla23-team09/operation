@@ -96,22 +96,6 @@ module "grafana_dashboards" {
   labels    = each.value.labels
 }
 
-module "grafana_persistent_volume_claim" {
-  depends_on = [module.grafana_dashboards]
-
-  source = "../Shared-Modules/kubernetes-persistent-volume-claim"
-
-  metadata = {
-    name = "grafana-persistent-volume-claim"
-  }
-
-  spec = {
-    storage = "10Gi"
-    access_modes = ["ReadWriteMany"]
-    storage_class_name = "standard"
-  }
-}
-
 module "grafana" {
   depends_on = [module.grafana_dashboards]
 
@@ -123,9 +107,7 @@ module "grafana" {
 
   namespace = var.chart_config_grafana.namespace
 
-  values = ["${file("./values/grafana.yaml")}",
-            "persistance.existingClaim=${module.grafana_persistent_volume_claim.pvc_name}"
-          ]
+  values = ["${file("./values/grafana.yaml")}"]
 
   set_maps = var.chart_config_grafana.set_maps
 }
