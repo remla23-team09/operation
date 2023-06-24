@@ -4,10 +4,6 @@ service:
   nodePorts:
     grafana: 80
 
-ingress:
-  enabled: true
-  hostname: "grafana.remla23-team09.com"
-
 dashboardsProvider:
   enabled: true
 
