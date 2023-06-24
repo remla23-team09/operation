@@ -1,5 +1,15 @@
-# service:
-#   loadBalancerIP: "34.141.178.188"
+grafana:
+  istio:
+    hosts:
+      - grafana.remla23-team09.com
+    gateways:
+      - istio-system/istio-ingressgateway
+
+grafana-operator:
+  grafana:
+    config:
+      server:
+        root_url: "https://grafana.remla23-team09.com"
 
 sidecar:
   dashboards:
