@@ -1,5 +1,5 @@
-service:
-  loadBalancerIP: "34.141.178.188"
+# service:
+#   loadBalancerIP: "34.141.178.188"
 
 sidecar:
   dashboards:
