@@ -1,5 +1,4 @@
-service:
-  hostAliases: [34.141.178.188]
+hostAliases: [34.141.178.188]
 
 sidecar:
   dashboards:
