@@ -85,9 +85,7 @@ variable "chart_config_grafana_operator" {
     version   = "2.9.3"
     namespace = "monitoring"
 
-    values = [
-      "${file("./values/grafana.yaml")}}"
-    ]
+    values = []
 
     set_maps = {
       "grafana.ini.paths.provisioning"            = "/etc/grafana/provisioning"

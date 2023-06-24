@@ -96,7 +96,7 @@ module "grafana_operator" {
 
   namespace = var.chart_config_grafana_operator.namespace
 
-  values = concat(var.chart_config_grafana_operator.values)
+  values = ["${file("./values/grafana.yaml")}}"]
 
   set_maps = var.chart_config_grafana_operator.set_maps
 }
