@@ -13,6 +13,9 @@ dashboardsProvider:
   enabled: true
   configMapName: ""
 
+persistance:
+  accessMode: ReadWriteMany
+
 datasources:
   secretDefinition:
     apiVersion: 1
