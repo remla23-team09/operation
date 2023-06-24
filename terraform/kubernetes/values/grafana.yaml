@@ -1,8 +1,5 @@
-hostAliases: [
-  - ip: "34.141.178.188"
-    hostnames:
-      - "grafana.remla23-team09.com"
-]
+service:
+  loadBalancerIP: "34.141.178.188"
 
 sidecar:
   dashboards:
@@ -10,6 +7,7 @@ sidecar:
     searchNamespace: ALL
 
 dashboardProviders:
+  enabled: true
   dashboardproviders.yaml:
     apiVersion: 1
     providers:
@@ -22,5 +20,6 @@ dashboardProviders:
       options:
         path: /var/lib/grafana/dashboards/default
 
-  dashboardsConfigMaps:
-    default: "remla23-team09"
+  dashboardsConfigMaps[0]:
+    configMapName: "remla23-team09"
+    fileName: "remla23-team09.json"
