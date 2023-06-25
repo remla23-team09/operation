@@ -25,6 +25,10 @@ variable "namespaces" {
       annotations = {}
       labels      = { "istio-injection" : "enabled" }
     }
+    "kiali-operator" = {
+      annotations = {}
+      labels      = { "istio-injection" : "enabled" }
+    }
   }
 }
 
