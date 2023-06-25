@@ -120,7 +120,9 @@ variable "chart_config_kiali_server" {
 
     values = []
 
-    set_maps = {}
+    set_maps = {
+      "auth.strategy" = "anonymous"
+    }
   }
 }
 
@@ -132,9 +134,6 @@ variable "chart_config_kiali_operator" {
 
     values = []
 
-    set_maps = {
-      "cr.create"    = "true"
-      "cr.namespace" = "istio-system"
-    }
+    set_maps = { }
   }
 }
