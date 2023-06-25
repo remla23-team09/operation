@@ -4,8 +4,8 @@ admin:
   passwordKey: "password"
 
 service:
-  type: LoadBalancer
-  loadBalancerIP: "34.32.188.221"
+  type: clusterIP
+  clusterIP: "34.32.188.221"
   ports:
     grafana: 80
 
