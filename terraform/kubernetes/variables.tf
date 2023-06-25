@@ -112,10 +112,13 @@ variable "chart_config_kiali_server" {
   description = "A configmap for grafaba dashboards"
   default = {
     version   = "1.69.0"
-    namespace = "istio-system"
+    namespace = "kiali-operator"
 
     values = []
 
-    set_maps = {}
+    set_maps = {
+      "cr.create"    = "true"
+      "cr.namespace" = "istio-system"
+    }
   }
 }

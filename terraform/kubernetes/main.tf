@@ -116,9 +116,9 @@ module "kiali_server" {
   depends_on = [module.grafana]
 
   source        = "../Shared-Modules/helm-chart"
-  name          = "kiali-server"
+  name          = "kiali-operator"
   repository    = "https://kiali.org/helm-charts"
-  chart         = "kiali-server"
+  chart         = "kiali-operator"
   chart_version = var.chart_config_kiali_server.version
 
   namespace = var.chart_config_kiali_server.namespace
