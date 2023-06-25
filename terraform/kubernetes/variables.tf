@@ -126,14 +126,14 @@ variable "chart_config_kiali_server" {
   }
 }
 
-# variable "chart_config_kiali_operator" {
-#   description = "A configmap for kiali operator"
-#   default = {
-#     version   = "1.69.0"
-#     namespace = "monitoring"
+variable "chart_config_kiali_operator" {
+  description = "A configmap for kiali operator"
+  default = {
+    version   = "1.69.0"
+    namespace = "monitoring"
 
-#     values = []
+    values = []
 
-#     set_maps = { }
-#   }
-# }
+    set_maps = { }
+  }
+}
