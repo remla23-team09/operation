@@ -113,7 +113,19 @@ variable "grafana_dashboards" {
 }
 
 variable "chart_config_kiali_server" {
-  description = "A configmap for grafaba dashboards"
+  description = "A configmap for kiali server"
+  default = {
+    version   = "1.69.0"
+    namespace = "istio-system"
+
+    values = []
+
+    set_maps = {}
+  }
+}
+
+variable "chart_config_kiali_operator" {
+  description = "A configmap for kiali operator"
   default = {
     version   = "1.69.0"
     namespace = "kiali-operator"
