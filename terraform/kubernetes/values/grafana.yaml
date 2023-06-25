@@ -20,18 +20,8 @@ datasources:
     - name: Prometheus
       type: prometheus
       url: http://kube-prometheus-prometheus.monitoring.svc.cluster.local:9090  
-      access: direct
+      access: proxy
       isDefault: true
-      jsonData:
-        httpMethod: POST
-        manageAlerts: true
-        prometheusType: Prometheus
-        incrementalQuerying: true
-        incrementalQueryOverlapWindow: 10m
-        cacheLevel: 'High'
-        incrementalQuerying: true
-        incrementalQueryOverlapWindow: 10m
-
 
 dashboardsConfigMaps:
   - configMapName: "remla23-team09"
