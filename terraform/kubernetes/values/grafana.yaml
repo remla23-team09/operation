@@ -4,7 +4,7 @@ admin:
   passwordKey: "password"
 
 service:
-  type: clusterIP
+  type: ClusterIP
   clusterIP: "34.32.188.221"
   ports:
     grafana: 80
