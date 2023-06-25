@@ -67,7 +67,7 @@ module "namespaces" {
 # }
 
 module "grafana_public_ip" {
-  depends_on = [module.kube_prometheus_stack]
+  depends_on = [module.namespaces]
 
   source = "../Shared-Modules/ip-address"
   name = "${var.project}-${var.team}-grafana-public-ip"
