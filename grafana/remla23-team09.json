@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -52,6 +51,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -103,7 +104,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Twt Roberta model"
+                "value": "Version 1"
               }
             ]
           },
@@ -115,7 +116,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Gaussian NB model"
+                "value": "Version 2"
               }
             ]
           }
@@ -132,7 +133,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -225,6 +227,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "number of requests",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -281,9 +285,7 @@
       "id": 3,
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -381,7 +383,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.1",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -417,7 +419,7 @@
           },
           "expression": "$happy_v1 + $sad_v1\n",
           "hide": false,
-          "refId": "Twt Roberta",
+          "refId": "Version 1",
           "type": "math"
         },
         {
@@ -452,7 +454,7 @@
           },
           "expression": "$happy_v2 + $sad_v2\n",
           "hide": false,
-          "refId": "Guassian NB",
+          "refId": "Version 2",
           "type": "math"
         }
       ],
@@ -531,7 +533,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.0.1",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -546,7 +548,7 @@
           "refId": "A"
         }
       ],
-      "title": "Size of data input (number of characters) - Twt Roberta",
+      "title": "Size of data input (number of characters) - Version 1",
       "type": "bargauge"
     },
     {
@@ -596,7 +598,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": false
       },
-      "pluginVersion": "9.0.1",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -605,9 +607,9 @@
           },
           "editorMode": "builder",
           "expr": "avg by(version) (gauge_time{step=\"sentiment\", version=\"v1\"})",
-          "legendFormat": "Twt Roberta",
+          "legendFormat": "Version 1",
           "range": true,
-          "refId": "Twt Roberta"
+          "refId": "Version 1"
         },
         {
           "datasource": {
@@ -617,9 +619,9 @@
           "editorMode": "builder",
           "expr": "avg by(version) (gauge_time{step=\"sentiment\", version=\"v2\"})",
           "hide": false,
-          "legendFormat": "Gaussian NB",
+          "legendFormat": "Version 2",
           "range": true,
-          "refId": "Guassian NB"
+          "refId": "Version 2"
         }
       ],
       "title": "Average Model Prediction Time",
@@ -698,7 +700,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.0.1",
+      "pluginVersion": "9.5.5",
       "targets": [
         {
           "datasource": {
@@ -713,20 +715,20 @@
           "refId": "A"
         }
       ],
-      "title": "Size of data input (number of characters) - Guassian NB",
+      "title": "Size of data input (number of characters) - Version 2",
       "type": "bargauge"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 36,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2023-06-22T22:06:44.894Z",
-    "to": "2023-06-22T22:16:44.894Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
