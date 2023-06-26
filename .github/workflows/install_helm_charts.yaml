@@ -1,5 +1,5 @@
 name: Deploy Helm Charts
-run-name: Package & Push Helm Chart
+run-name: Deploy Helm Charts
 on:
   workflow_dispatch:
     inputs:
