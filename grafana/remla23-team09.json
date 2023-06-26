@@ -314,7 +314,7 @@
           },
           "editorMode": "builder",
           "expr": "sum(counter_happy_predictions_total)",
-          "hide": false,
+          "hide": true,
           "legendFormat": "Happy Predictions",
           "range": true,
           "refId": "happy_predictions"
@@ -325,9 +325,32 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$sad_predictions + $happy_predictions",
+          "expression": "$sad_predictions + $happy_predictions + $neutral_predictions",
           "hide": false,
           "refId": "Total Predictions",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "builder",
+          "expr": "sum(counter_neutral_predictions_total)",
+          "hide": true,
+          "legendFormat": "Happy Predictions",
+          "range": true,
+          "refId": "neutral_predictions"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$happy_predictions + $neutral_predictions",
+          "hide": false,
+          "refId": "Happy predictions",
           "type": "math"
         }
       ],
@@ -360,7 +383,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Version 1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Version 1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Version 2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Version 2"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -417,7 +465,7 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$happy_v1 + $sad_v1\n",
+          "expression": "$happy_v1 + $sad_v1 + $neutral_v1",
           "hide": false,
           "refId": "Version 1",
           "type": "math"
@@ -452,10 +500,36 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$happy_v2 + $sad_v2\n",
+          "expression": "$happy_v2 + $sad_v2 + $neutral_v2",
           "hide": false,
           "refId": "Version 2",
           "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "counter_neutral_predictions_total{version=\"v1\"}",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "neutral_v1"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "counter_neutral_predictions_total{version=\"v2\"}",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "neutral_v2"
         }
       ],
       "title": "Number of predictions - Comparison",
