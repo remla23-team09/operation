@@ -1,20 +1,23 @@
 # Operation
+This project contains a sentiment analysis application that classifies restaurant reviews to be positive or negative. 
+
+The web application can be found here: http://remla23-team09.com/.
 
 ## Code Overview
-- The [Model-training](https://github.com/remla23-team09/model-training/tree/main) repository trains the model and preprocesses the data. Check text_preprocessing.py and text_classification.py to see the preprocessing and training of the model. 
-- The [Model-service](https://github.com/remla23-team09/model-service) repository embeds the ML model in a Flask webservice. Check model-service.py.
+- The [Model-training](https://github.com/remla23-team09/model-training/tree/main) repository trains the model and preprocesses the data. Check dvc.yaml to see the ML pipeline.
+- The [Model-service](https://github.com/remla23-team09/model-service) repository embeds the ML model in a Flask webservice. Check /src/interface.py.
 - The [Lib](https://github.com/remla23-team09/lib) repository contains a simple version-aware library. Check VersionUtil.py.
 - The [App](https://github.com/remla23-team09/app) repository contains a simple Flask frontend application. Check app.py. 
 
 ## Run with Docker (A1)
 - Make sure to have Docker and Docker compose installed.
-- To run the application locaclly run `docker-compose up`. This starts the `app` and the `model-service` containers. 
+- To run the application locally run `docker-compose up`. This starts the `app` and the `model-service` containers. 
 - Open `localhost:8080` to classify restaurant reviews. 
 
 ## Run with helm charts (A2)
 - If you desire to deploy applications as helm charts navigate to **app** and **model-service** repositories where you run the respective commands:
-    - `helm install <app-name> .\app-chart\`
-    - `helm install <model-service-name> .\model-service-chart\`
+    - `helm install <app-name> .\helm-chart\app-chart\`
+    - `helm install <model-service-name> .\helm-chart\model-service-chart\`
 
 The helm charts refer to the latest available images from the public repositories.
 
@@ -34,7 +37,7 @@ In order to start Prometheus and Grafana run the following commands:
 First, install Istio from https://github.com/istio/istio/releases/tag/1.17.2. 
 
 Run the following commands:
-1. `minikube start --memory=3000 --cpus=2` (start with the memory you want, for us it is enough with this)
+1. `minikube start`
 2. `istioctl install`
 3. `kubectl label namespace default istio-injection=enabled`
 
@@ -71,6 +74,8 @@ To open the Grafana dashboard, follow these instructions:
 
 You should see the following dashboard:
 ![Grafana dashboard](images/grafana.jpg)
+
+## Terraform deployment
 
 ### Experiment
 
