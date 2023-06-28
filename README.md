@@ -76,20 +76,24 @@ You should see the following dashboard:
 ![Grafana dashboard](images/grafana.jpg)
 
 ## Terraform deployment
+In order to improve our collaboration in the group, we decided to deploy our kubernetes cluster on Google Cloud using Terraform. 
 
-### Experiment
+Our web application can be found here: http://remla23-team09.com/
+And our Grafana dashboard can be found here: http://grafana.remla23-team09.com/
 
-In our project, we have deployed two different versions of the app service. We have also implemented two different version of the model-service service. The app v1 is connected to model-service v1, and app v2 is connected to model-service v2. 50% of the requests are redirected to app v1 and 50% to app v2. 
+Disclaimer: We don't have so many Google Cloud credits left, so it may be that we have run out of credits when you try to access the URLs. 
 
-The plan is to make two different ML models, and that the two different app services are using different ML models to classify the restaurant reviews. However, for now, the two versions are the same. 
+## Experiment
 
-The hypothesis is therefore that the metrics should be similar for both of the versions. Some of the metrics we measure are the number of predictions, time taken for prediction, length of input. These metrics can be seen in the screenshot of the Grafana dashboard above. 
+In our project, we have deployed two different versions of the app service. We have also implemented two different versions of the model-service service. The app v1 is connected to model-service v1, and app v2 is connected to model-service v2. 50% of the requests are redirected to app v1 and 50% to app v2. 
 
-When having the two different ML models, we will also add the classification accuracy for the ML models in order to be able to decide which ML model is the best. We will also continue to measure the time taken to make a prediction, in order to see which model is the most resource heavy.
+The model-service v1 contains a TWT Roberta model and the model-service v2 contains the basic Gaussian NB model. 
 
-### Rate limiting
+The hypothesis is that the TWT Roberta model will have a higher classification accuracy, but have a longer prediction time. These two metrics are collected by Prometheus, and can be seen in the screenshot of the Grafana dasbhoard above.
 
-Rate limiting has been implemented using Envoyfilter. We have chosen to limit app v1, because app v1 is the new version of the app service. Since that version will have a more resource heavy ML model, we want to limit the usage of that version. For now, users will be temporarily blocked if they send more than 5 requests per minute.
+## Rate limiting
+
+Rate limiting has been implemented using Istio's Envoyfilter. We have chosen to limit app v1, because app v1 is the new version of the app service. Since that version will have a more resource heavy ML model, we want to limit the usage of that version. For now, users will be temporarily blocked if they send more than 10 requests per minute.
 
 
 
