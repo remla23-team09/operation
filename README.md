@@ -87,13 +87,19 @@ The hypothesis is that the TWT Roberta model will have a higher classification a
 
 Rate limiting has been implemented using Istio's Envoyfilter. We have chosen to limit app v1, because app v1 is the new version of the app service. Since that version will have a more resource heavy ML model, we want to limit the usage of that version. For now, users will be temporarily blocked if they send more than 50 requests per minute.
 
-## Terraform deployment
-In order to improve our collaboration in the group, we decided to deploy our kubernetes cluster on Google Cloud using Terraform. 
+## GCP deployment
+In order to improve our collaboration in the group and experinece working on a shared, remote platform we decided to deploy our kubernetes cluster on Google Cloud. 
 
 Our web application can be found here: http://remla23-team09.com/
 And our Grafana dashboard can be found here: http://grafana.remla23-team09.com/
 
-Disclaimer: We don't have so many Google Cloud credits left, so it may be that we have run out of credits when you try to access the URLs. 
+Disclaimer: We don't have so many Google Cloud credits left, so it may be that we have run out of credits when you try to access the URLs.
+
+### Deployment with Terraform 
+Terraform is used to create and configure the cloud infrastructure and provision Grafana monitoring stack. The structure of the IaC is laid out in 2 directories. 
+ - The `./terraform/` directory contains the main.tf file responsible for creating the kubernetes cluster and the terraform state storage on GCP.
+ - The `./terraform/kubernetes` directory contains the main.tf file responsible for crating resources on the kubernetes cluster and deploying helm charts. The authentication to the cluster requires providing a path to the kubeconfig file storing only credentials to the desired clusters. The default path points to `./terraform/kubernetes/config` but it can be replaced by providing a new path to the "kubeconfig" variable. A config containing credentials to a local minikube instance could be used to use the exisitng terraform code. 
+ - All the resources provisioned from both of the terraform configurations are sourced from a common library in `./terraform/Shared-Modules`. This architecture allows for reusability of components and clear separation of resources.   
 
 
 
