@@ -97,10 +97,14 @@ Disclaimer: We don't have so many Google Cloud credits left, so it may be that w
 
 ### Deployment with Terraform 
 Terraform is used to create and configure the cloud infrastructure and provision Grafana monitoring stack. The structure of the IaC is laid out in 2 directories. 
- - The `./terraform/` directory contains the main.tf file responsible for creating the kubernetes cluster and the terraform state storage on GCP.
- - The `./terraform/kubernetes` directory contains the main.tf file responsible for crating resources on the kubernetes cluster and deploying helm charts. The authentication to the cluster requires providing a path to the kubeconfig file storing only credentials to the desired clusters. The default path points to `./terraform/kubernetes/config` but it can be replaced by providing a new path to the "kubeconfig" variable. A config containing credentials to a local minikube instance could be used to use the exisitng terraform code. 
- - All the resources provisioned from both of the terraform configurations are sourced from a common library in `./terraform/Shared-Modules`. This architecture allows for reusability of components and clear separation of resources.   
+ 
+The `./terraform/` directory contains the main.tf file responsible for creating the kubernetes cluster and the terraform state storage on GCP. Using this terraform code requires authenticating to GCP.
 
+The `./terraform/kubernetes` directory contains the main.tf file responsible for creating resources on the kubernetes cluster and deploying helm charts. The authentication to the cluster requires providing a path to the kubeconfig file storing only credentials to the desired clusters. The default path points to `./terraform/kubernetes/config` but it can be replaced by providing a new path to the "kubeconfig" variable. A config containing credentials to a local minikube instance could be used to use the existing terraform code. 
+ 
+All the resources provisioned from both of the terraform configurations are sourced from a common library in `./terraform/Shared-Modules`. This architecture allows for the reusability of components and clear separation of resources.   
+
+For our implementation of the project, both terraform configurations are deployed from GitHub actions pipelines for the transparent overview of changes introduced to the cloud environment. Applying changes from any pipeline requires an approval of the organization owner.
 
 
 
